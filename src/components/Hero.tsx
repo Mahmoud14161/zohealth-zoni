@@ -29,12 +29,12 @@ export function Hero({ t }: HeroProps) {
         >
           <source src="/zonia%20zo.webm" type="video/webm" />
         </video>
-        {/* Lighter overlay to let the video shine through while keeping text readable */}
-        <div className="absolute inset-0 bg-white/40 backdrop-blur-sm" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-brand-light/90" />
+        {/* Strong white frosted glass effect for perfect text legibility */}
+        <div className="absolute inset-0 bg-white/70 backdrop-blur-[6px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/60 to-white/90" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-10 md:mt-0">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-4 md:mt-8">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -47,22 +47,22 @@ export function Hero({ t }: HeroProps) {
             transition={{ duration: 1 }}
             src="/logo.png?v=2" 
             alt="ZoHealth Clinic Logo" 
-            className="h-28 md:h-48 object-contain mx-auto mb-6 md:mb-10 opacity-90 drop-shadow-sm"
+            className="h-32 md:h-56 object-contain mx-auto mb-2 md:mb-4 opacity-90 drop-shadow-sm"
           />
-          <h2 className="text-brand-accent font-medium tracking-[0.15em] md:tracking-[0.3em] text-xs md:text-sm uppercase mb-4 md:mb-8">{t.hero.subtitle}</h2>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-brand-text mb-6 md:mb-8 leading-tight">
+          <h2 className="text-brand-accent font-medium tracking-[0.1em] md:tracking-[0.2em] text-[10px] md:text-xs uppercase mb-3 md:mb-6">{t.hero.subtitle}</h2>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif text-brand-text mb-4 md:mb-6 leading-tight">
             {t.hero.quote}
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-brand-text/80 max-w-2xl mx-auto leading-relaxed mb-10 font-light px-2">
+          <p className="text-sm sm:text-base md:text-xl text-brand-text/80 max-w-2xl mx-auto leading-relaxed mb-6 md:mb-10 font-light px-2">
             {t.hero.description}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 sm:px-0">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full px-4 sm:px-0">
             <motion.a 
               href="/philosophy"
               onClick={(e) => handleNavClick(e, 'philosophy')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto inline-block px-8 py-4 bg-[#4A5D4A] text-white rounded-full font-medium text-sm hover:shadow-lg transition-shadow uppercase tracking-widest text-center"
+              className="w-full sm:w-auto inline-block px-6 py-3 md:px-8 md:py-4 bg-[#4A5D4A] text-white rounded-full font-medium text-xs md:text-sm hover:shadow-lg transition-shadow uppercase tracking-widest text-center"
             >
               {t.hero.cta}
             </motion.a>
@@ -71,7 +71,7 @@ export function Hero({ t }: HeroProps) {
               onClick={(e) => handleNavClick(e, 'booking')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto inline-block px-8 py-4 bg-transparent border border-[#4A5D4A] text-brand-text rounded-full font-medium text-sm hover:bg-[#4A5D4A] hover:text-white hover:border-[#4A5D4A] transition-all uppercase tracking-widest text-center"
+              className="w-full sm:w-auto inline-block px-6 py-3 md:px-8 md:py-4 bg-transparent border border-[#4A5D4A] text-brand-text rounded-full font-medium text-xs md:text-sm hover:bg-[#4A5D4A] hover:text-white hover:border-[#4A5D4A] transition-all uppercase tracking-widest text-center"
             >
               {t.nav.book}
             </motion.a>
