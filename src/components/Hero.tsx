@@ -19,17 +19,19 @@ export function Hero({ t }: HeroProps) {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 md:pt-32">
       {/* Background Video */}
-      <div className="absolute inset-0 w-full h-full bg-brand-light">
+      <div className="absolute inset-0 w-full h-full bg-white overflow-hidden">
         <video 
           autoPlay 
           loop 
           muted 
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/zonia%20zo.webm" type="video/webm" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-transparent to-brand-light/90" />
+        {/* Soft blur and elegant gradient to make text pop beautifully */}
+        <div className="absolute inset-0 bg-white/40 backdrop-blur-[4px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/30 to-brand-light/100" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
