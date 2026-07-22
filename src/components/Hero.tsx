@@ -34,7 +34,7 @@ export function Hero({ t }: HeroProps) {
         <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/60 to-white/90" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-4 md:mt-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full -mt-16 md:mt-0">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ export function Hero({ t }: HeroProps) {
             transition={{ duration: 1 }}
             src="/logo.png?v=2" 
             alt="ZoHealth Clinic Logo" 
-            className="h-32 md:h-56 object-contain mx-auto mb-2 md:mb-4 opacity-90 drop-shadow-sm"
+            className="h-44 md:h-56 object-contain mx-auto mb-4 opacity-90 drop-shadow-sm"
           />
           <h2 className="text-brand-accent font-medium tracking-[0.1em] md:tracking-[0.2em] text-[10px] md:text-xs uppercase mb-3 md:mb-6">{t.hero.subtitle}</h2>
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif text-brand-text mb-4 md:mb-6 leading-tight">
