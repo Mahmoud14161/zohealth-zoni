@@ -57,15 +57,32 @@ export function ServiceLandingPage({ t, serviceId }: ServiceLandingPageProps) {
 
   return (
     <div className="min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-      <motion.button
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        onClick={handleBackClick}
-        className="flex items-center gap-2 text-brand-text/60 hover:text-brand-accent transition-colors mb-12 uppercase tracking-widest text-sm font-medium"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        {t.nav.home}
-      </motion.button>
+      <div className="flex items-center gap-6 mb-12">
+        <motion.button
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          onClick={() => {
+            window.history.pushState(null, '', '/services');
+            window.dispatchEvent(new PopStateEvent('popstate'));
+          }}
+          className="flex items-center gap-2 text-brand-text/60 hover:text-brand-accent transition-colors uppercase tracking-widest text-sm font-medium"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          {t.nav.services}
+        </motion.button>
+        
+        <div className="w-px h-4 bg-brand-text/20"></div>
+
+        <motion.button
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.1 }}
+          onClick={handleBackClick}
+          className="flex items-center gap-2 text-brand-text/60 hover:text-brand-accent transition-colors uppercase tracking-widest text-sm font-medium"
+        >
+          {t.nav.home}
+        </motion.button>
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <motion.div
