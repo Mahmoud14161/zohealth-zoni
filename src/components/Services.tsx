@@ -33,7 +33,11 @@ export function Services({ t }: ServicesProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`bg-white/40 backdrop-blur-xl p-10 rounded-[40px] shadow-sm hover:shadow-xl transition-shadow border border-white/40 relative overflow-hidden group ${service.id === 'women' ? 'ring-1 ring-brand-accent/30' : ''}`}
+              onClick={() => {
+                window.history.pushState(null, '', `/service/${service.id}`);
+                window.dispatchEvent(new PopStateEvent('popstate'));
+              }}
+              className={`bg-white/40 backdrop-blur-xl p-10 rounded-[40px] shadow-sm hover:shadow-xl transition-shadow border border-white/40 relative overflow-hidden group cursor-pointer ${service.id === 'women' ? 'ring-1 ring-brand-accent/30' : ''}`}
             >
               {service.id === 'women' && (
                 <div className="absolute top-0 right-0 p-4">

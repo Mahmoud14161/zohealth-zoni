@@ -20,6 +20,9 @@ export function Navbar({ t, lang, setLang }: NavbarProps) {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       window.history.pushState(null, '', `/${sectionId}`);
+    } else {
+      window.history.pushState(null, '', `/${sectionId}`);
+      window.dispatchEvent(new PopStateEvent('popstate'));
     }
     closeMenu();
   };
@@ -36,6 +39,7 @@ export function Navbar({ t, lang, setLang }: NavbarProps) {
           <div className="flex items-center cursor-pointer gap-3" onClick={() => {
             window.scrollTo({top: 0, behavior: 'smooth'});
             window.history.pushState(null, '', '/');
+            window.dispatchEvent(new PopStateEvent('popstate'));
           }}>
             <img src="/logo.png?v=2" alt="ZoHealth Clinic Logo" className="h-[50px] md:h-[85px] object-contain py-1" />
             <span className="font-serif text-xl md:text-2xl text-brand-text tracking-wider whitespace-nowrap mt-1">ZoHealth Clinic</span>

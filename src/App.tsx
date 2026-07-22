@@ -14,24 +14,39 @@ import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { WhatsAppButton } from './components/WhatsAppButton';
 import { CustomCursor } from './components/CustomCursor';
+import { ServiceLandingPage } from './components/ServiceLandingPage';
 
 export default function App() {
   const [lang, setLang] = useState<Language>('es');
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const t = translations[lang];
 
   useEffect(() => {
-    // Check if the URL has a path like /philosophy
-    const path = window.location.pathname.substring(1);
-    if (path) {
-      // Small timeout to allow React to render the components first
-      setTimeout(() => {
-        const element = document.getElementById(path);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 500);
-    }
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+      
+      const path = window.location.pathname.substring(1);
+      if (path && !path.startsWith('service/')) {
+        setTimeout(() => {
+          const element = document.getElementById(path);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      } else if (!path) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    // Trigger once on mount
+    handleLocationChange();
+
+    return () => window.removeEventListener('popstate', handleLocationChange);
   }, []);
+
+  const isServicePage = currentPath.startsWith('/service/');
+  const serviceId = isServicePage ? currentPath.split('/')[2] : null;
 
   return (
     <div className="min-h-screen font-sans selection:bg-brand-accent selection:text-white relative overflow-hidden">
@@ -53,14 +68,22 @@ export default function App() {
 
       <div className="relative z-10">
         <Navbar t={t} lang={lang} setLang={setLang} />
-      <main>
-        <Hero t={t} />
-        <Philosophy t={t} />
-        <Services t={t} />
-        <Booking t={t} />
-        <FAQ t={t} />
-      </main>
-      <Footer t={t} />
+        
+        <main>
+          {isServicePage && serviceId ? (
+            <ServiceLandingPage t={t} serviceId={serviceId} />
+          ) : (
+            <>
+              <Hero t={t} />
+              <Philosophy t={t} />
+              <Services t={t} />
+              <Booking t={t} />
+              <FAQ t={t} />
+            </>
+          )}
+        </main>
+
+        <Footer t={t} />
         <WhatsAppButton />
       </div>
     </div>
