@@ -89,6 +89,7 @@ export function ServiceLandingPage({ t, serviceId }: ServiceLandingPageProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          className="order-2 lg:order-1"
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-brand-text mb-6 leading-tight">
             {service.title}
@@ -124,7 +125,7 @@ export function ServiceLandingPage({ t, serviceId }: ServiceLandingPageProps) {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="relative rounded-[40px] overflow-hidden bg-white/40 backdrop-blur-sm border border-white/40 shadow-xl aspect-square lg:aspect-[4/5] flex items-center justify-center group"
+          className="relative rounded-[40px] overflow-hidden bg-white/40 backdrop-blur-sm border border-white/40 shadow-xl aspect-square lg:aspect-[4/5] flex items-center justify-center group order-1 lg:order-2"
         >
           {imageSrc ? (
             <img 
