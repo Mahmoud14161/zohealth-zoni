@@ -14,6 +14,16 @@ export function Navbar({ t, lang, setLang }: NavbarProps) {
 
   const closeMenu = () => setIsMobileMenuOpen(false);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      window.history.pushState(null, '', `/${sectionId}`);
+    }
+    closeMenu();
+  };
+
   return (
     <motion.nav 
       initial={{ opacity: 0, y: -20 }}
@@ -23,7 +33,10 @@ export function Navbar({ t, lang, setLang }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 md:h-24">
-          <div className="flex items-center cursor-pointer gap-3" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+          <div className="flex items-center cursor-pointer gap-3" onClick={() => {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            window.history.pushState(null, '', '/');
+          }}>
             <img src="/logo.png?v=2" alt="ZoHealth Clinic Logo" className="h-[50px] md:h-[85px] object-contain py-1" />
             <span className="font-serif text-xl md:text-2xl text-brand-text tracking-wider whitespace-nowrap mt-1">ZoHealth Clinic</span>
           </div>
@@ -31,9 +44,9 @@ export function Navbar({ t, lang, setLang }: NavbarProps) {
           <div className="flex items-center gap-4 md:gap-8">
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-8">
-              <a href="#philosophy" className="text-sm tracking-wide text-brand-text/80 hover:text-brand-accent transition-colors">{t.nav.about}</a>
-              <a href="#services" className="text-sm tracking-wide text-brand-text/80 hover:text-brand-accent transition-colors">{t.nav.services}</a>
-              <a href="#booking" className="text-sm tracking-wide bg-brand-accent text-white px-6 py-2.5 rounded-full hover:bg-brand-accent/90 transition-colors shadow-sm">{t.nav.book}</a>
+              <a href="/philosophy" onClick={(e) => handleNavClick(e, 'philosophy')} className="text-sm tracking-wide text-brand-text/80 hover:text-brand-accent transition-colors">{t.nav.about}</a>
+              <a href="/services" onClick={(e) => handleNavClick(e, 'services')} className="text-sm tracking-wide text-brand-text/80 hover:text-brand-accent transition-colors">{t.nav.services}</a>
+              <a href="/booking" onClick={(e) => handleNavClick(e, 'booking')} className="text-sm tracking-wide bg-brand-accent text-white px-6 py-2.5 rounded-full hover:bg-brand-accent/90 transition-colors shadow-sm">{t.nav.book}</a>
             </div>
 
             {/* Language Switcher (Visible on Mobile and Desktop) */}
@@ -73,9 +86,9 @@ export function Navbar({ t, lang, setLang }: NavbarProps) {
             className="md:hidden bg-white/95 backdrop-blur-md border-b border-brand-accent/20 overflow-hidden"
           >
             <div className="flex flex-col px-6 py-8 gap-6 items-center">
-              <a href="#philosophy" onClick={closeMenu} className="text-brand-text/80 font-medium hover:text-brand-accent transition-colors uppercase tracking-widest text-sm w-full text-center py-2 border-b border-brand-accent/10">{t.nav.about}</a>
-              <a href="#services" onClick={closeMenu} className="text-brand-text/80 font-medium hover:text-brand-accent transition-colors uppercase tracking-widest text-sm w-full text-center py-2 border-b border-brand-accent/10">{t.nav.services}</a>
-              <a href="#booking" onClick={closeMenu} className="bg-brand-accent text-white px-8 py-3 rounded-full hover:bg-brand-accent/90 transition-colors uppercase tracking-widest text-sm font-bold mt-2 shadow-sm w-full text-center">{t.nav.book}</a>
+              <a href="/philosophy" onClick={(e) => handleNavClick(e, 'philosophy')} className="text-brand-text/80 font-medium hover:text-brand-accent transition-colors uppercase tracking-widest text-sm w-full text-center py-2 border-b border-brand-accent/10">{t.nav.about}</a>
+              <a href="/services" onClick={(e) => handleNavClick(e, 'services')} className="text-brand-text/80 font-medium hover:text-brand-accent transition-colors uppercase tracking-widest text-sm w-full text-center py-2 border-b border-brand-accent/10">{t.nav.services}</a>
+              <a href="/booking" onClick={(e) => handleNavClick(e, 'booking')} className="bg-brand-accent text-white px-8 py-3 rounded-full hover:bg-brand-accent/90 transition-colors uppercase tracking-widest text-sm font-bold mt-2 shadow-sm w-full text-center">{t.nav.book}</a>
             </div>
           </motion.div>
         )}

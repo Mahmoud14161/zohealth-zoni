@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { translations, Language } from './i18n';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -18,6 +18,20 @@ import { CustomCursor } from './components/CustomCursor';
 export default function App() {
   const [lang, setLang] = useState<Language>('es');
   const t = translations[lang];
+
+  useEffect(() => {
+    // Check if the URL has a path like /philosophy
+    const path = window.location.pathname.substring(1);
+    if (path) {
+      // Small timeout to allow React to render the components first
+      setTimeout(() => {
+        const element = document.getElementById(path);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen font-sans selection:bg-brand-accent selection:text-white relative overflow-hidden">
