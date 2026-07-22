@@ -23,8 +23,9 @@ export function Navbar({ t, lang, setLang }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 md:h-24">
-          <div className="flex items-center cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-            <img src="/logo.png?v=2" alt="ZoHealth Clinic Logo" className="h-[60px] md:h-[85px] object-contain py-1" />
+          <div className="flex items-center cursor-pointer gap-3" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+            <img src="/logo.png?v=2" alt="ZoHealth Clinic Logo" className="h-[50px] md:h-[85px] object-contain py-1" />
+            <span className="font-serif text-xl md:text-2xl text-brand-text tracking-wider whitespace-nowrap mt-1">ZoHealth Clinic</span>
           </div>
           
           <div className="flex items-center gap-4 md:gap-8">
