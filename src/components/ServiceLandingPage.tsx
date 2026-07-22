@@ -44,6 +44,17 @@ export function ServiceLandingPage({ t, serviceId }: ServiceLandingPageProps) {
     window.dispatchEvent(new PopStateEvent('popstate'));
   };
 
+  const serviceImages: Record<string, string> = {
+    individual: '/Psicoterapia%20Individual.webp',
+    women: '/Programa%20de%20Empoderamiento%20Femenino.webp',
+    oncology: '/Psicooncolog%C3%ADa.jpg',
+    neuro: '/Neuropsychology.jpg',
+    career: '/Career%20Guidance.jpg',
+    workshops: '/Workshops%20&%20Conferences.jpg'
+  };
+
+  const imageSrc = serviceImages[serviceId];
+
   return (
     <div className="min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
       <motion.button
@@ -68,10 +79,10 @@ export function ServiceLandingPage({ t, serviceId }: ServiceLandingPageProps) {
           <div className="w-24 h-px bg-brand-accent mb-8"></div>
           
           <div className="prose prose-lg prose-p:text-brand-text/80 prose-p:leading-relaxed prose-p:font-light">
-            <p className="text-lg md:text-xl">
+            <p className="text-lg md:text-xl font-medium text-brand-text/90">
               {service.description}
             </p>
-            {/* Extended dummy content for the landing page so it feels full */}
+            {/* Extended content for the landing page */}
             <p className="mt-6">
               En ZoHealth, entendemos que cada proceso es único. Nos enfocamos en brindarte las herramientas necesarias para que puedas alcanzar un bienestar emocional duradero. Nuestro enfoque es empático, profesional y basado en evidencia científica.
             </p>
@@ -98,12 +109,19 @@ export function ServiceLandingPage({ t, serviceId }: ServiceLandingPageProps) {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="relative rounded-[40px] overflow-hidden bg-white/40 backdrop-blur-sm border border-white/40 shadow-xl aspect-square lg:aspect-[4/5] flex items-center justify-center group"
         >
-          {/* Placeholder for future image */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-brand-text/30 group-hover:text-brand-accent/50 transition-colors">
-            <ImageIcon className="w-16 h-16 mb-4 opacity-50" />
-            <span className="text-sm uppercase tracking-widest font-medium">Espacio para imagen</span>
-            <span className="text-xs mt-2 opacity-70 px-8 text-center">Puedes subir la imagen relacionada a {service.title} aquí</span>
-          </div>
+          {imageSrc ? (
+            <img 
+              src={imageSrc} 
+              alt={service.title} 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+            />
+          ) : (
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-brand-text/30 group-hover:text-brand-accent/50 transition-colors">
+              <ImageIcon className="w-16 h-16 mb-4 opacity-50" />
+              <span className="text-sm uppercase tracking-widest font-medium">Espacio para imagen</span>
+              <span className="text-xs mt-2 opacity-70 px-8 text-center">Puedes subir la imagen relacionada a {service.title} aquí</span>
+            </div>
+          )}
         </motion.div>
       </div>
     </div>
