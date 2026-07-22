@@ -38,6 +38,7 @@ export function Footer({ t }: FooterProps) {
                 <span>ZoHealth Clinic &copy; 2026</span>
               </div>
               <span>{t.footer.rights}</span>
+              <span className="mt-2 text-brand-text/60 font-normal">📍 Ciudad de México, México</span>
             </div>
           </div>
         </div>
