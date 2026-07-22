@@ -32,7 +32,7 @@ export default function App() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/zonia_video.webm" type="video/webm" />
+          <source src="/zonia%20zo.webm" type="video/webm" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-br from-brand-bg/95 via-brand-bg/80 to-brand-accent-light/90"></div>
       </div>
