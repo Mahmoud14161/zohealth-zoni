@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg: #F4F7F4;
+  --color-brand-bg-alt: #E8F0E8;
+  --color-brand-text: #2D342D;
+  --color-brand-accent: #8BA88B;
+  --color-brand-accent-light: #E0E8E0;
+  
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Lato", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply text-brand-text font-sans antialiased bg-transparent;
+  }
+  
+  @media (hover: hover) and (pointer: fine) {
+    * {
+      cursor: none !important;
+    }
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
