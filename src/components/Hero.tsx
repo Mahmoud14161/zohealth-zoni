@@ -7,23 +7,47 @@ interface HeroProps {
 }
 
 export function Hero({ t }: HeroProps) {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      window.history.pushState(null, '', `/${sectionId}`);
+    }
+  };
+
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center pt-24 overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-        <div className="absolute -top-20 -left-20 w-96 h-96 bg-brand-bg-alt rounded-full blur-3xl opacity-60"></div>
-        <div className="absolute bottom-20 right-0 w-[500px] h-[500px] bg-[#D6E2D6] rounded-full blur-[100px] opacity-40"></div>
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 md:pt-32">
+      {/* Background Video */}
+      <div className="absolute inset-0 w-full h-full bg-brand-light">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+        >
+          <source src="/zonia%20zo.webm" type="video/webm" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-transparent to-brand-light/90" />
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
+          className="text-center z-10 px-4 max-w-4xl mx-auto mt-12 md:mt-16"
         >
-          <span className="block text-sm md:text-base tracking-[0.2em] text-brand-accent uppercase mb-6">
-            {t.hero.subtitle}
-          </span>
+          <motion.img 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            src="/logo.png?v=2" 
+            alt="ZoHealth Clinic Logo" 
+            className="h-36 md:h-56 object-contain mx-auto mb-8 md:mb-12 opacity-90 drop-shadow-sm"
+          />
+          <h2 className="text-brand-accent font-medium tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm uppercase mb-6 md:mb-8">{t.hero.subtitle}</h2>
           <h1 className="text-5xl md:text-7xl font-serif text-brand-text mb-8 leading-tight">
             {t.hero.quote}
           </h1>
@@ -32,7 +56,8 @@ export function Hero({ t }: HeroProps) {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <motion.a 
-              href="#philosophy"
+              href="/philosophy"
+              onClick={(e) => handleNavClick(e, 'philosophy')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-block px-8 py-4 bg-[#4A5D4A] text-white rounded-full font-medium text-sm hover:shadow-lg transition-shadow uppercase tracking-widest"
@@ -40,7 +65,8 @@ export function Hero({ t }: HeroProps) {
               {t.hero.cta}
             </motion.a>
             <motion.a 
-              href="#booking"
+              href="/booking"
+              onClick={(e) => handleNavClick(e, 'booking')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-block px-8 py-4 bg-transparent border border-[#4A5D4A] text-brand-text rounded-full font-medium text-sm hover:bg-[#4A5D4A] hover:text-white hover:border-[#4A5D4A] transition-all uppercase tracking-widest"
