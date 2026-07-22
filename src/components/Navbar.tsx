@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Translations, Language } from '../i18n';
-import { Leaf } from 'lucide-react';
-import { motion } from 'motion/react';
+import { Leaf, Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface NavbarProps {
   t: Translations;
@@ -10,6 +10,10 @@ interface NavbarProps {
 }
 
 export function Navbar({ t, lang, setLang }: NavbarProps) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const closeMenu = () => setIsMobileMenuOpen(false);
+
   return (
     <motion.nav 
       initial={{ opacity: 0, y: -20 }}
@@ -47,9 +51,34 @@ export function Navbar({ t, lang, setLang }: NavbarProps) {
                 EN
               </button>
             </div>
+
+            {/* Mobile Hamburger Icon */}
+            <div className="md:hidden flex items-center ml-2">
+              <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-brand-text hover:text-brand-accent transition-colors">
+                {isMobileMenuOpen ? <X size={28} strokeWidth={1.5} /> : <Menu size={28} strokeWidth={1.5} />}
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Mobile Slide Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden bg-white/95 backdrop-blur-md border-b border-brand-accent/20 overflow-hidden"
+          >
+            <div className="flex flex-col px-6 py-8 gap-6 items-center">
+              <a href="#philosophy" onClick={closeMenu} className="text-brand-text/80 font-medium hover:text-brand-accent transition-colors uppercase tracking-widest text-sm w-full text-center py-2 border-b border-brand-accent/10">{t.nav.about}</a>
+              <a href="#services" onClick={closeMenu} className="text-brand-text/80 font-medium hover:text-brand-accent transition-colors uppercase tracking-widest text-sm w-full text-center py-2 border-b border-brand-accent/10">{t.nav.services}</a>
+              <a href="#booking" onClick={closeMenu} className="bg-brand-accent text-white px-8 py-3 rounded-full hover:bg-brand-accent/90 transition-colors uppercase tracking-widest text-sm font-bold mt-2 shadow-sm w-full text-center">{t.nav.book}</a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }

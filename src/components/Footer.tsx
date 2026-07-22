@@ -27,15 +27,6 @@ export function Footer({ t }: FooterProps) {
             </div>
           </div>
           
-          {/* Mobile Navigation Menu (Visible only on phones) */}
-          <div className="md:hidden w-full max-w-xs mt-4 mb-4">
-            <div className="flex flex-col items-center gap-4 border-y border-brand-accent/20 py-6">
-              <a href="#philosophy" className="text-brand-text/80 font-medium hover:text-brand-accent transition-colors uppercase tracking-widest text-sm">{t.nav.about}</a>
-              <a href="#services" className="text-brand-text/80 font-medium hover:text-brand-accent transition-colors uppercase tracking-widest text-sm">{t.nav.services}</a>
-              <a href="#booking" className="bg-brand-accent text-white px-8 py-3 rounded-full hover:bg-brand-accent/90 transition-colors uppercase tracking-widest text-sm font-bold mt-2 shadow-sm">{t.nav.book}</a>
-            </div>
-          </div>
-
           <div className="mt-8 md:mt-12 text-sm text-brand-text/40 font-light flex flex-col items-center gap-2">
             <img 
               src="/logo.png?v=2" 
@@ -47,7 +38,7 @@ export function Footer({ t }: FooterProps) {
                 <span>ZoHealth Clinic &copy; 2026</span>
               </div>
               <span>{t.footer.rights}</span>
-              <span className="mt-2 text-brand-text/60 font-normal">📍 Ciudad de México, México</span>
+              <span className="mt-2 text-brand-text/60 font-normal">Ciudad de México, México</span>
             </div>
           </div>
         </div>
