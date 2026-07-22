@@ -65,6 +65,25 @@ export function Booking({ t }: BookingProps) {
       }
     }
 
+    // Send data to Google Sheets
+    try {
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzZkyCbIVEiUWaRTVpsu9rb5UZUTAHai_O6wFd3_bGK3uTCYyym6nDhwT-aQZQSRJqcnQ/exec';
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Important to avoid CORS issues with Google Apps Script
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          age: age,
+          phone: phone,
+          email: email,
+          serviceTitle: serviceTitle
+        }),
+      });
+    } catch (error) {
+      console.error('Error saving data to Google Sheets:', error);
+    }
+
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);
